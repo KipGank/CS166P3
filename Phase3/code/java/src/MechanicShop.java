@@ -398,6 +398,11 @@ public class MechanicShop{
 			}while(valid);
 		}
 		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
+		try {
+		esql.executeUpdate(SQL);
+		}catch(Exception e) {
+				System.err.println (e.getMessage ());
+		}
 	}
 	public static void AddMechanic(MechanicShop esql){//2
 		String firstName = "";
@@ -435,14 +440,17 @@ public class MechanicShop{
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
-		} while(!(yearExp >= 0 && yearExp < 100));
+		} while((yearExp < 0 || yearExp > 100));
 		
 		String yExp = Integer.toString(yearExp); 
 		
 		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values('" + firstName + "\', \'" + lastName + "\', \'" + yExp + "\')";
+		try {
+		esql.executeUpdate(SQL);
+		}catch(Exception e){
+				System.err.println (e.getMessage ());
+		}
 	}
-	
-	
 	
 	public static void AddCar(MechanicShop esql){//3
 
@@ -498,6 +506,11 @@ public class MechanicShop{
 		
 		String yr = Integer.toString(year); 
 		String SQL = "INSERT INTO Car(make,model,year) Values('" + make + "\', \'" + model + "\', \'" + yr + "')";
+		try {
+			esql.executeUpdate(SQL);
+		}catch(Exception e) {
+				System.err.println (e.getMessage ());
+		}
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
