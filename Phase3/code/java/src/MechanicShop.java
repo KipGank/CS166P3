@@ -559,7 +559,7 @@ public class MechanicShop{
 			System.out.println("First element at first list: " + results.get(0).get(0));
 			for(int i = 0; i < results.size(); ++i) { //check if first name exists
 				if(firstName.trim().equals(results.get(i).get(0).trim())) {
-					System.out.println("Found Match");
+					//System.out.println("Found Match");
 					fnameFound = true; 	
 					break;
 				} 
@@ -658,30 +658,13 @@ public class MechanicShop{
 			}
 		}
 		else { //find all VINs associated with the first and last name provided 
-			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstName + " AND C2.lname = " + lastName; 
+			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = '" + firstName + "' AND C2.lname = '" + lastName + "'"; 
 			try {
 				results = esql.executeQueryAndReturnResult(SQL);
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
-			System.out.println("Select from available cars to service: "); 
-			for(int i = 0; i < results.size(); ++i) {
-				System.out.println(results.get(i).get(0));
-				customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
-				break;
-			} 
-			try{
-				car = in.readLine(); //user enters VIN for car to be serviced 
-			} catch(Exception e) {
-				System.err.println (e.getMessage ());
-			}
-			for(int i = 0; i < results.size(); ++i) { //check if VIN entered exists 
-				if(car == results.get(i).get(0)) {
-					valid = true;
-					break;
-				}
-			}
-			if(valid == false) { //if the VIN entered is not found, prompt user to enter VIN again 
+			if(results.isEmpty()){ //if the VIN entered is not found, prompt user to enter VIN
 				System.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
 				System.out.printf("%n");
 				do
@@ -735,6 +718,26 @@ public class MechanicShop{
 					esql.executeUpdate(SQL);
 				}catch(Exception e) {
 						System.err.println (e.getMessage ());
+				}
+			}
+			else 
+			{
+				System.out.println("Select from available cars to service: "); 
+				for(int i = 0; i < results.size(); ++i) {
+					System.out.println(results.get(i).get(0));
+					customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
+					break;
+				} 
+				try{
+					car = in.readLine(); //user enters VIN for car to be serviced 
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+				for(int i = 0; i < results.size(); ++i) { //check if VIN entered exists 
+					if(car.trim().equals(results.get(i).get(0).trim())) {
+						valid = true;
+						break;
+					}
 				}
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -884,7 +887,9 @@ public class MechanicShop{
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//
-		String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10";
+		System.out.println("Please enter an integer k: "); 
+		String input = in.readLine();
+		String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT " + input;
 		
 		try
 		{
