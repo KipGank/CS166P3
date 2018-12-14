@@ -530,14 +530,14 @@ public class MechanicShop{
 		
 		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
 		
-		list<list<string>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		list<list<String>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		if(results.size != 0) {
 			system.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
 				system.out.println(results.get(i).get(0)); 
 				system.out.printf("%n");
 			}
-			string firstName = ""; 
+			String firstName = ""; 
 			try{
 				firstName = in.readline();
 				} catch(Exception e) {
@@ -583,7 +583,7 @@ public class MechanicShop{
 				AddCar(esql);
 			}
 			Date serviceDate = new Date(); //create a date for creating a new service request 
-			serviceDate = string(serviceDate); //convert date into string
+			serviceDate = String(serviceDate); //convert date into string
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
@@ -660,7 +660,7 @@ public class MechanicShop{
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-		string SQL = "SELECT C.date,C.comment,C.bill FROM Closed_Request C WHERE bill < 100";
+		String SQL = "SELECT C.date,C.comment,C.bill FROM Closed_Request C WHERE bill < 100";
 		
 		try
 		{
@@ -676,7 +676,7 @@ public class MechanicShop{
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 	
-		string SQL = 'SELECT C.fname, C.lname FROM Customer C,( SELECT customer_id,COUNT(customer_id) as car_num FROM Owns GROUP BY customer_id HAVING COUNT(customer_id) > 20 ) AS O WHERE O.customer_id = id';
+		String SQL = "SELECT C.fname, C.lname FROM Customer C,( SELECT customer_id,COUNT(customer_id) as car_num FROM Owns GROUP BY customer_id HAVING COUNT(customer_id) > 20 ) AS O WHERE O.customer_id = id";
 		
 		try
 		{
@@ -691,7 +691,7 @@ public class MechanicShop{
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
 		
-		string SQL = 'SELECT DISTINCT C.make,C.model, year FROM Car AS C, Service_Request AS S WHERE year < 1995 and S.car_vin = C.vin and S.odometer < 50000';
+		String SQL = "SELECT DISTINCT C.make,C.model, year FROM Car AS C, Service_Request AS S WHERE year < 1995 and S.car_vin = C.vin and S.odometer < 50000";
 		
 		try
 		{
@@ -704,9 +704,8 @@ public class MechanicShop{
     	}
 	}
 	
-	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
-		//
-		string SQL = 'SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10	';
+	public static void ListKCarsWithTheMostServices(MechanicShop esql){//
+		String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10";
 		
 		try
 		{
@@ -722,7 +721,7 @@ public class MechanicShop{
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
 		//
-		string SQL = 'SELECT C.fname , C.lname, Total FROM Customer AS C, (SELECT sr.customer_id, SUM(CR.bill) AS Total FROM Closed_Request AS CR, Service_Request AS SR WHERE CR.rid = SR.rid GROUP BY SR.customer_id) AS A WHERE C.id=A.customer_id ORDER BY A.Total DESC';
+		String SQL = "SELECT C.fname , C.lname, Total FROM Customer AS C, (SELECT sr.customer_id, SUM(CR.bill) AS Total FROM Closed_Request AS CR, Service_Request AS SR WHERE CR.rid = SR.rid GROUP BY SR.customer_id) AS A WHERE C.id=A.customer_id ORDER BY A.Total DESC";
 		
 		try
 		{
