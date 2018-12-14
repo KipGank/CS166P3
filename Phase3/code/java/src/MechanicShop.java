@@ -401,7 +401,7 @@ public class MechanicShop{
 				valid = false; 
 			}while(valid);
 		}
-		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address "\')";
+		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
@@ -454,7 +454,7 @@ public class MechanicShop{
 			}
 		} while(yearExp >= 0 && yearExp < 100);
 		
-		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values(\'" + firstName + '\', \'' + lastName + '\', \'' + yearExp + '\')';
+		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values('" + firstName + "\', \'" + lastName + "\', \'" + yearExp + "\')";
 	}
 	
 	
@@ -510,7 +510,7 @@ public class MechanicShop{
 				System.err.println (e.getMessage ());
 			} 
 		} while (year < 1970);
-		String SQL = "INSERT INTO Car(make,model,year) Values(\'" + make + '\', \'' + model + '\', \'' + year + '\')';
+		String SQL = "INSERT INTO Car(make,model,year) Values('" + make + "\', \'" + model + "\', \'" + year + "')";
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
@@ -528,7 +528,7 @@ public class MechanicShop{
 			System.err.println (e.getMessage ());
 		}
 		
-		SQL = 'SELECT C.fname FROM Customer C WHERE C.lname = ' + lastName; 
+		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
 		
 		list<list<string>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		if(results.size != 0) {
@@ -556,7 +556,7 @@ public class MechanicShop{
 			AddCustomer(esql);
 		}
 		else { //find all VINs associated with the first and last name provided 
-			SQL = 'SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = ' + firstname + ' AND C2.lname = ' + lastname; 
+			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstname + " AND C2.lname = " + lastname; 
 			results = executeQueryAndReturnResult(SQL);
 			system.out.println("Select from available cars to service: "); 
 			system.out.printf("%n");
@@ -586,7 +586,7 @@ public class MechanicShop{
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0" //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
-			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + '\', \'' + car + '\', \'' + serviceDate + '\', \'' + odometer + '\', \'' + complaint + '\')'; 
+			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
 			executeUpdate(SQL); //create new service request 
 		}
 	}
