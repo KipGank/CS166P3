@@ -507,7 +507,7 @@ public class MechanicShop{
 		String customerID = ""; 
 		String firstName = ""; 
 		String serviceDate = ""; 
-		List<List<String>> results(0);
+		List<List<String>> results = new List<List<String>>();
 		boolean valid = false;
 		boolean fnameFound = false; 
 		System.out.println("Please enter your last name: "); //user enters last name 
