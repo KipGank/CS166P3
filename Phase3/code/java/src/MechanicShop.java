@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
+import java.text.simpleSDF; 
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -643,7 +644,7 @@ public class MechanicShop{
 		String complaint = ""; //complaint will be empty
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
-		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
+		String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		esql.executeUpdate(SQL); //create new service request 
 	}
 	
