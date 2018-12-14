@@ -397,7 +397,7 @@ public class MechanicShop{
 				valid = false; 
 			}while(valid);
 		}
-		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
+		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values(\'" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 		try {
 		esql.executeUpdate(SQL);
 		}catch(Exception e) {
@@ -555,6 +555,7 @@ public class MechanicShop{
 					System.err.println (e.getMessage ());
 				}
 			System.out.println("First name entered: " + firstName);
+			System.out.println("First element at first list: " + results.get(0).get(0));
 			for(int i = 0; i < results.size(); ++i) { //check if first name exists
 				if(results.get(i).get(0) == firstName) {
 					System.out.println("Found Match");
