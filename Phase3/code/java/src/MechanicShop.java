@@ -435,7 +435,7 @@ public class MechanicShop{
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
-		} while(yearExp >= 0 && yearExp < 100);
+		} while(!(yearExp >= 0 && yearExp < 100));
 		
 		String yExp = Integer.toString(yearExp); 
 		
@@ -594,7 +594,7 @@ public class MechanicShop{
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
-			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
+			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values(\'" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
 			try {
 			esql.executeUpdate(SQL); //create new service request 
 			} catch(Exception e) {
@@ -685,7 +685,7 @@ public class MechanicShop{
 		
 		try
 		{
-	         int rowCount = esql.executeQuery(SQL);
+	         int rowCount = esql.executeQueryAndPrintResult(SQL);
 	         System.out.println ("Customers with bills less than 100: " + rowCount);
     	}
     	catch(Exception e)
@@ -701,7 +701,7 @@ public class MechanicShop{
 		
 		try
 		{
-	         int rowCount = esql.executeQuery(SQL);
+	         int rowCount = esql.executeQueryAndPrintResult(SQL);
 	         System.out.println ("Customers with more than 20 cars: " + rowCount);
     	}
     	catch(Exception e)
@@ -716,7 +716,7 @@ public class MechanicShop{
 		
 		try
 		{
-	         int rowCount = esql.executeQuery(SQL);
+	         int rowCount = esql.executeQueryAndPrintResult(SQL);
 	         System.out.println ("Cars before 1995 with 50,000 miles: " + rowCount);
     	}
     	catch(Exception e)
@@ -730,7 +730,7 @@ public class MechanicShop{
 		
 		try
 		{
-	         int rowCount = esql.executeQuery(SQL);
+	         int rowCount = esql.executeQueryAndPrintResult(SQL);
 	         System.out.println ("Cars with most services: " + rowCount);
     	}
     	catch(Exception e)
@@ -746,7 +746,7 @@ public class MechanicShop{
 		
 		try
 		{
-	         int rowCount = esql.executeQuery(SQL);
+	         int rowCount = esql.executeQueryAndPrintResult(SQL);
 	         System.out.println ("Descending order of customers total bill: " + rowCount);
     	}
     	catch(Exception e)
