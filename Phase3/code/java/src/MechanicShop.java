@@ -312,6 +312,7 @@ public class MechanicShop{
 		String lastName = ""; 
 		String phone = ""; 
 		String address = ""; 
+		int id = 0;
 		
 		system.out.print("Please enter your customer id: ");
 		try
@@ -338,7 +339,7 @@ public class MechanicShop{
 					System.err.println (e.getMessage ());
 				}
 				valid = false; 
-			} while(valid)
+			} while(valid);
 			valid = true;
 		}
 		system.out.print("Please enter your last name: ");
@@ -358,7 +359,7 @@ public class MechanicShop{
 					System.err.println (e.getMessage ());
 				}
 				valid = false; 
-			} while(valid)
+			} while(valid);
 			valid = true;
 		}
 		system.out.print("Please enter your phone number: ");
@@ -378,7 +379,7 @@ public class MechanicShop{
 					System.err.println (e.getMessage ());
 				}
 				valid = false; 
-			} while(valid)
+			} while(valid);
 			valid = true; 
 		}
 		system.out.print("Please enter your address: ");
@@ -397,7 +398,8 @@ public class MechanicShop{
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
-			}
+				valid = false; 
+			}while(valid);
 		}
 		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values(\'" + firstName + '\', \'' + lastName + '\', \'' + phone + '\', \'' + address '\')';
 	}
@@ -451,7 +453,11 @@ public class MechanicShop{
 				System.err.println (e.getMessage ());
 			}
 		} while(yearExp >= 0 && yearExp < 100);
+		
+		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values(\'" + firstName + '\', \'' + lastName + '\', \'' + yearExp + '\')';
 	}
+	
+	
 	
 	public static void AddCar(MechanicShop esql){//3
 
@@ -504,6 +510,7 @@ public class MechanicShop{
 				System.err.println (e.getMessage ());
 			} 
 		} while (year < 1970);
+		String SQL = "INSERT INTO Car(make,model,year) Values(\'" + make + '\', \'' + model + '\', \'' + year + '\')';
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
