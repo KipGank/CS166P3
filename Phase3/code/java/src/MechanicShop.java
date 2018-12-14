@@ -548,15 +548,15 @@ public class MechanicShop{
 			System.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
 				System.out.println(results.get(i).get(0)); 
-				keepResults.add(results.get(i).get(0));
 			}
 			try{
 				firstName = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
-			for(int i = 0; i < keepResults.size(); ++i) { //check if first name exists
-				if(keepResults.get(i) == firstName) {
+			System.out.println("First name entered: " + firstName);
+			for(int i = 0; i < results.size(); ++i) { //check if first name exists
+				if(results.get(i).get(0) == firstName) {
 					System.out.println("Found Match");
 					fnameFound = true; 	
 					break;
