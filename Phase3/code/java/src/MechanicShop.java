@@ -557,7 +557,7 @@ public class MechanicShop{
 			System.out.println("First name entered: " + firstName);
 			System.out.println("First element at first list: " + results.get(0).get(0));
 			for(int i = 0; i < results.size(); ++i) { //check if first name exists
-				if(results.get(i).get(0) == firstName) {
+				if(results.get(i).get(0).equals(firstName)) {
 					System.out.println("Found Match");
 					fnameFound = true; 	
 					break;
