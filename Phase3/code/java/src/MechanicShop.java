@@ -517,8 +517,11 @@ public class MechanicShop{
 		}
 		
 		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
-		
+		try{
 		List<List<String>> results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		}catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
 		if(results.size() != 0) {
 			System.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
@@ -545,7 +548,11 @@ public class MechanicShop{
 		}
 		else { //find all VINs associated with the first and last name provided 
 			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstName + " AND C2.lname = " + lastName; 
-			results = esql.executeQueryAndReturnResult(SQL);
+			try {
+				results = esql.executeQueryAndReturnResult(SQL);
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
 			System.out.println("Select from available cars to service: "); 
 			System.out.printf("%n");
 			for(int i = 0; i < results.size(); ++i) {
@@ -571,9 +578,13 @@ public class MechanicShop{
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 			// Get the date today using Calendar object.
+			try {
 			Date d1 = sdf.parse("1/1/2016 00:00");
 			Date d2 = sdf.parse("12/31/2016 00:00");
 			Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
 			// Using DateFormat format method we can create a string 
 			// representation of a date with the defined format.
 			String serviceDate = sdf.format(randomDate); //convert date into string
