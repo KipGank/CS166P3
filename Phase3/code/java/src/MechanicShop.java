@@ -401,7 +401,7 @@ public class MechanicShop{
 				valid = false; 
 			}while(valid);
 		}
-		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values(\'" + firstName + '\', \'' + lastName + '\', \'' + phone + '\', \'' + address '\')';
+		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address "\')";
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
