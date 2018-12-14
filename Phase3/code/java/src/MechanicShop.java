@@ -521,7 +521,6 @@ public class MechanicShop{
 		String firstName = ""; 
 		String serviceDate = "";
 		String fakeid = "0"; 
-		String lastName = ""; 
 		String phone = ""; 
 		String address = "";
 		String make = "";
@@ -646,7 +645,7 @@ public class MechanicShop{
 					valid = false; 
 				}while(valid);
 			}
-			String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
+			SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 			try {
 			esql.executeUpdate(SQL);
 			}catch(Exception e) {
@@ -726,7 +725,7 @@ public class MechanicShop{
 				} while (year < 1970);
 				
 				String yr = Integer.toString(year); 
-				String SQL = "INSERT INTO Car(vin,make,model,year) Values('" + car + "', '" + make + "\', \'" + model + "\', \'" + yr + "')";
+				SQL = "INSERT INTO Car(vin,make,model,year) Values('" + car + "', '" + make + "\', \'" + model + "\', \'" + yr + "')";
 				try {
 					esql.executeUpdate(SQL);
 				}catch(Exception e) {
