@@ -506,6 +506,7 @@ public class MechanicShop{
 		String car = "";
 		String customerID = ""; 
 		String firstName = ""; 
+		String serviceDate = ""; 
 		List<List<String>> results;
 		boolean valid = false;
 		boolean fnameFound = false; 
@@ -583,7 +584,7 @@ public class MechanicShop{
 			Date d1 = sdf.parse("1/1/2016 00:00");
 			Date d2 = sdf.parse("12/31/2016 00:00");
 			Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
-			String serviceDate = sdf.format(randomDate);
+			serviceDate = sdf.format(randomDate);
 			} catch(Exception e) {
 				System.err.println(e.getMessage ());
 			}
