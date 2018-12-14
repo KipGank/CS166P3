@@ -655,7 +655,7 @@ public class MechanicShop{
 		String complaint = ""; //complaint will be empty
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
-		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill  "')"; 
+		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		executeUpdate(SQL); //create new service request 
 	}
 	
