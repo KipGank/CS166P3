@@ -399,7 +399,7 @@ public class MechanicShop{
 	public static void AddMechanic(MechanicShop esql){//2
 		String firstName = "";
 		String lastName = "";
-		int yearExp = "";
+		int yearExp = 0;
 		do
 		{
 			System.out.print("Please enter your first name: ");
@@ -514,8 +514,8 @@ public class MechanicShop{
 		
 		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
 		
-		List<List<String>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
-		if(results.size != 0) {
+		List<List<String>> results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		if(results.size() != 0) {
 			System.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
 				System.out.println(results.get(i).get(0)); 
@@ -541,8 +541,8 @@ public class MechanicShop{
 			AddCustomer(esql);
 		}
 		else { //find all VINs associated with the first and last name provided 
-			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstname + " AND C2.lname = " + lastname; 
-			results = executeQueryAndReturnResult(SQL);
+			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstName + " AND C2.lname = " + lastName; 
+			results = esql.executeQueryAndReturnResult(SQL);
 			System.out.println("Select from available cars to service: "); 
 			System.out.printf("%n");
 			for(int i = 0; i < results.size(); ++i) {
