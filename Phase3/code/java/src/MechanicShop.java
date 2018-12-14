@@ -312,20 +312,11 @@ public class MechanicShop{
 		String lastName = ""; 
 		String phone = ""; 
 		String address = ""; 
-		int id = 0;
-		
-		System.out.print("Please enter your customer id: ");
-		try
-		{
-			id = in.readline();
-		} catch(Exception e) {
-			System.err.println (e.getMessage ());
-		}
-		
+
 		System.out.print("Please enter your first name: ");
 		try
 		{
-			firstName = in.readline();
+			firstName = in.readLine();
 		} catch(Exception e) {
 			System.err.println (e.getMessage ());
 		}
@@ -334,7 +325,7 @@ public class MechanicShop{
 				System.out.print("Please enter your first name: ");
 				try
 				{
-					firstName = in.readline();
+					firstName = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -345,7 +336,7 @@ public class MechanicShop{
 		System.out.print("Please enter your last name: ");
 		try
 				{
-					lastName = in.readline();
+					lastName = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -354,7 +345,7 @@ public class MechanicShop{
 				System.out.print("Please enter your last name: ");
 				try
 				{
-					lastName = in.readline();
+					lastName = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -365,7 +356,7 @@ public class MechanicShop{
 		System.out.print("Please enter your phone number: ");
 		try
 			{
-				phone = in.readline();
+				phone = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -374,7 +365,7 @@ public class MechanicShop{
 				System.out.print("Please enter your phone number: ");
 				try
 				{
-					phone = in.readline();
+					phone = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -385,7 +376,7 @@ public class MechanicShop{
 		System.out.print("Please enter your address: ");
 		try
 			{
-				address = in.readline();
+				address = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -395,7 +386,7 @@ public class MechanicShop{
 				System.out.print("Please enter your address: ");
 				try
 				{
-					address = in.readline();
+					address = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -415,7 +406,7 @@ public class MechanicShop{
 		System.out.print("Please enter your mechanic id: ");
 		try
 		{
-			id = in.readline();
+			id = in.readLine();
 		} catch(Exception e) {
 			System.err.println (e.getMessage ());
 		}
@@ -425,7 +416,7 @@ public class MechanicShop{
 			System.out.print("Please enter your first name: ");
 			try
 			{
-				firstName = in.readline();
+				firstName = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -436,7 +427,7 @@ public class MechanicShop{
 			System.out.print("Please enter your last name: ");
 			try
 			{
-				lastName = in.readline();
+				lastName = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -448,7 +439,7 @@ public class MechanicShop{
 			System.out.print("Please enter your year of experience: ");
 			try
 			{
-				 yearExp = in.readline();
+				 yearExp = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -471,7 +462,7 @@ public class MechanicShop{
 			System.out.print("Please enter the VIN: ");
 			try
 			{
-				VIN = in.readline();
+				VIN = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -482,7 +473,7 @@ public class MechanicShop{
 			System.out.print("Please enter the make: ");
 			try
 			{
-				make = in.readline();
+				make = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -493,7 +484,7 @@ public class MechanicShop{
 			System.out.print("Please enter the model: ");
 			try
 			{
-				model = in.readline();
+				model = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -505,7 +496,7 @@ public class MechanicShop{
 			System.out.print("Please enter the year: ");
 			try
 			{
-				year = in.readline();
+				year = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			} 
@@ -523,7 +514,7 @@ public class MechanicShop{
 		System.out.println("Please enter your last name: "); //user enters last name 
 		try
 		{
-			lastName = in.readline();
+			lastName = in.readLine();
 		} catch(Exception e) {
 			System.err.println (e.getMessage ());
 		}
@@ -539,7 +530,7 @@ public class MechanicShop{
 			}
 			String firstName = ""; 
 			try{
-				firstName = in.readline();
+				firstName = in.readLine();
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
@@ -567,7 +558,7 @@ public class MechanicShop{
 				break;
 			} 
 			try{
-				car = in.readline(); //user enters VIN for car to be serviced 
+				car = in.readLine(); //user enters VIN for car to be serviced 
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -606,7 +597,7 @@ public class MechanicShop{
 		system.out.print("Please enter the WID: ");
 		try
 		{
-			WID = in.readline();
+			WID = in.readLine();
 		} catch(Exception e) {
 			System.err.println (e.getMessage ());
 		}
@@ -616,7 +607,7 @@ public class MechanicShop{
 			system.out.print("Please enter the RID: ");
 			try
 			{
-				RID = in.readline();
+				RID = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -635,7 +626,7 @@ public class MechanicShop{
 			system.out.print("Please enter the MID: ");
 			try
 			{
-				MID = in.readline();
+				MID = in.readLine();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
