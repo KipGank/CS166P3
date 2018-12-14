@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
 import java.text.DateFormat; 
+import java.text.SimpleDateFormat;
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -567,7 +568,7 @@ public class MechanicShop{
 				System.out.printf("%n");
 				AddCar(esql);
 			}
-			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 			// Get the date today using Calendar object.
 			Date today = Calendar.getInstance().getTime();        
 			// Using DateFormat format method we can create a string 
@@ -651,7 +652,7 @@ public class MechanicShop{
 		// representation of a date with the defined format.
 		String serviceDate = df.format(today); //convert date into string
 		String complaint = ""; 
-		String bill = '0'; 
+		String bill = "0"; 
 		String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		esql.executeUpdate(SQL); //create new service request 
 	}
