@@ -23,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -305,45 +306,425 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1
+		boolean valid = true; 
+		String fakeid = "0"; 
+		String firstName = ""; 
+		String lastName = ""; 
+		String phone = ""; 
+		String address = ""; 
 		
+		system.out.print("Please enter your customer id: ");
+		try
+		{
+			id = in.readline();
+		} catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
+		
+		system.out.print("Please enter your first name: ");
+		try
+		{
+			firstName = in.readline();
+		} catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
+		if(firstName.length() > 32) {
+			do {
+				system.out.print("Please enter your first name: ");
+				try
+				{
+					firstName = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+				valid = false; 
+			} while(valid)
+			valid = true;
+		}
+		system.out.print("Please enter your last name: ");
+		try
+				{
+					lastName = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+		if(lastName.length() > 32) {
+			do {
+				system.out.print("Please enter your last name: ");
+				try
+				{
+					lastName = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+				valid = false; 
+			} while(valid)
+			valid = true;
+		}
+		system.out.print("Please enter your phone number: ");
+		try
+			{
+				phone = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		if(phone.length() > 13) {
+			do {
+				system.out.print("Please enter your phone number: ");
+				try
+				{
+					phone = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+				valid = false; 
+			} while(valid)
+			valid = true; 
+		}
+		system.out.print("Please enter your address: ");
+		try
+			{
+				address = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+		if(address.length() > 256)
+		{
+			do {
+				system.out.print("Please enter your address: ");
+				try
+				{
+					address = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+			}
+		}
+		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values(\'" + firstName + '\', \'' + lastName + '\', \'' + phone + '\', \'' + address '\')';
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
+		Scanner reader = new scanner(system.in);
+		int id = 0;
+		String firstName = "";
+		String lastName = "";
+		int yearExp = 0;
 		
+	
+		system.out.print("Please enter your mechanic id: ");
+		try
+		{
+			id = in.readline();
+		} catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
+		
+		do
+		{
+			system.out.print("Please enter your first name: ");
+			try
+			{
+				firstName = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		} while(firstName.length() > 32);
+	
+		do
+		{
+			system.out.print("Please enter your last name: ");
+			try
+			{
+				lastName = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		} while(lastName.length() > 32);
+		
+		
+		do
+		{
+			system.out.print("Please enter your year of experience: ");
+			try
+			{
+				 yearExp = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		} while(yearExp >= 0 && yearExp < 100);
 	}
 	
 	public static void AddCar(MechanicShop esql){//3
+
+		String VIN = "";
+		String make = "";
+		int year = 0;
+		String model = "";
 		
+		do
+		{
+			system.out.print("Please enter the VIN: ");
+			try
+			{
+				VIN = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		}while(VIN.length() > 16);
+		
+		do
+		{
+			system.out.print("Please enter the make: ");
+			try
+			{
+				make = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		}while(make.length > 32);
+		
+		do
+		{
+			system.out.print("Please enter the model: ");
+			try
+			{
+				model = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+		
+		} while(model.length() > 32);
+		
+		do
+		{
+			system.out.print("Please enter the year: ");
+			try
+			{
+				year = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			} 
+		} while (year < 1970);
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
+		String lastName = "";
+		String SQL = ""; 
+		String car = "";
+		String customerID = ""; 
+		boolean valid = false;
+		boolean fnameFound = false; 
+		system.out.println("Please enter your last name: "); //user enters last name 
+		try
+		{
+			lastName = in.readline();
+		} catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
 		
+		SQL = 'SELECT C.fname FROM Customer C WHERE C.lname = ' + lastName; 
+		
+		list<list<string>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		if(results.size != 0) {
+			system.out.println("Select from available customers: ");
+			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
+				system.out.println(results.get(i).get(0)); 
+				system.out.printf("%n");
+			}
+			string firstName = ""; 
+			try{
+				firstName = in.readline();
+				} catch(Exception e) {
+					System.err.println (e.getMessage ());
+				}
+		for(int i = 0; i < results.size(); ++i) { //check if first name exists
+			if(results.get(i).get(0) == firstName) {
+				fnameFound = true; 	
+				break;
+			} 
+		}
+		if(!fnameFound) //if the user needs to create a service request as a new customer
+		{
+			system.out.println("Name not found. Please provide information for a new customer: ");
+			system.out.printf("%n");
+			AddCustomer(esql);
+		}
+		else { //find all VINs associated with the first and last name provided 
+			SQL = 'SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = ' + firstname + ' AND C2.lname = ' + lastname; 
+			results = executeQueryAndReturnResult(SQL);
+			system.out.println("Select from available cars to service: "); 
+			system.out.printf("%n");
+			for(int i = 0; i < results.size(); ++i) {
+				system.println(results.get(i).get(0));
+				customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
+				break;
+			} 
+			try{
+				car = in.readline(); //user enters VIN for car to be serviced 
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+			for(int i = 0; i < results.size(); ++i) { //check if VIN entered exists 
+				if(car == results.get(i).get(0)) {
+					valid = true;
+					break;
+				}
+			}
+			if(!valid) { //if the VIN entered is not found, prompt user to enter VIN again 
+				system.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
+				system.out.prinf("%n");
+				AddCar(esql);
+			}
+			Date serviceDate = new Date(); //create a date for creating a new service request 
+			serviceDate = string(serviceDate); //convert date into string
+			String complaint = ""; //complaint will be empty
+			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
+			String fakerid = "0" //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
+			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + '\', \'' + car + '\', \'' + serviceDate + '\', \'' + odometer + '\', \'' + complaint + '\')'; 
+			executeUpdate(SQL); //create new service request 
+		}
 	}
 	
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
 		
+		String SQLRID = "SELECT COUNT(R.rid) FROM Service_Request R WHERE R.rid = ";
+		String SQLMID = "SELECT COUNT(M.id) FROM Mechanic M WHERE M.id = ";
+		int WID = 0;
+		int RID = 0;
+		int MID = 0;
+		/*
+		boolean ridBool = 0;
+		boolean midBool = 0;
+	
+		system.out.print("Please enter the WID: ");
+		try
+		{
+			WID = in.readline();
+		} catch(Exception e) {
+			System.err.println (e.getMessage ());
+		}
+		
+		do
+		{
+			system.out.print("Please enter the RID: ");
+			try
+			{
+				RID = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+			String input = RID;
+        	SQLRID += input;
+        	 int rowCount = esql.executeQuery(SQLRID);
+        	 if (rowCount >= 1)
+        	 {
+        	 	ridBool = 1;
+        	 }
+			
+		} while (!ridBool);
+		
+		do
+		{
+			system.out.print("Please enter the MID: ");
+			try
+			{
+				MID = in.readline();
+			} catch(Exception e) {
+				System.err.println (e.getMessage ());
+			}
+			String input = MID;
+        	SQLMID += input;
+        	 int rowCount = esql.executeQuery(SQLMID);
+        	 if (rowCount >= 1)
+        	 {
+        	 	midBool = 1;
+        	 }
+			
+		} while (!midBool);
+		
+		int bill = 1000;
+		Date serviceDate = new Date(); //create a date for creating a new service request 
+		serviceDate = string(serviceDate); //convert date into string
+		String complaint = ""; //complaint will be empty
+		*/
+	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
+		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + '\', \'' + complaint + '\', \'' + bill + ')'; 
+		executeUpdate(SQL); //create new service request 
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
+		string SQL = 'SELECT date,comment,bill FROM Closed_Request WHERE bill < 100';
+		
+		try
+		{
+	         int rowCount = esql.executeQuery(SQL);
+	         System.out.println ("Customers with bills less than 100: " + rowCount);
+    	}
+    	catch(Exception e)
+    	{
+        	 System.err.println (e.getMessage());
+    	}
 		
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
+	
+		string SQL = 'SELECT fname, lname FROM Customer,( SELECT customer_id,COUNT(customer_id) as car_num FROM Owns GROUP BY customer_id HAVING COUNT(customer_id) > 20 ) AS O WHERE O.customer_id = id';
 		
+		try
+		{
+	         int rowCount = esql.executeQuery(SQL);
+	         System.out.println ("Customers with more than 20 cars: " + rowCount);
+    	}
+    	catch(Exception e)
+    	{
+        	 System.err.println (e.getMessage());
+    	}
 	}
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
 		
+		string SQL = 'SELECT DISTINCT make,model, year FROM Car AS C, Service_Request AS S WHERE year < 1995 and S.car_vin = C.vin and S.odometer < 50000';
+		
+		try
+		{
+	         int rowCount = esql.executeQuery(SQL);
+	         System.out.println ("Cars before 1995 with 50,000 miles: " + rowCount);
+    	}
+    	catch(Exception e)
+    	{
+        	 System.err.println (e.getMessage());
+    	}
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
 		//
+		string SQL = 'SELECT make, model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10	';
+		
+		try
+		{
+	         int rowCount = esql.executeQuery(SQL);
+	         System.out.println ("Cars with most services: " + rowCount);
+    	}
+    	catch(Exception e)
+    	{
+        	 System.err.println (e.getMessage());
+    	}
 		
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
 		//
+		string SQL = 'SELECT C.fname , C.lname, Total FROM Customer AS C, (SELECT sr.customer_id, SUM(CR.bill) AS Total FROM Closed_Request AS CR, Service_Request AS SR WHERE CR.rid = SR.rid GROUP BY SR.customer_id) AS A WHERE C.id=A.customer_id ORDER BY A.Total DESC';
 		
+		try
+		{
+	         int rowCount = esql.executeQuery(SQL);
+	         System.out.println ("Descending order of customers total bill: " + rowCount);
+    	}
+    	catch(Exception e)
+    	{
+        	 System.err.println (e.getMessage());
+    	}
 	}
 	
 }
