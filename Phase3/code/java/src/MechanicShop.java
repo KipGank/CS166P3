@@ -583,12 +583,13 @@ public class MechanicShop{
 			Date d1 = sdf.parse("1/1/2016 00:00");
 			Date d2 = sdf.parse("12/31/2016 00:00");
 			Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
+			String serviceDate = sdf.format(randomDate);
 			} catch(Exception e) {
-				System.err.println (e.getMessage ());
+				System.err.println(e.getMessage ());
 			}
 			// Using DateFormat format method we can create a string 
 			// representation of a date with the defined format.
-			String serviceDate = sdf.format(randomDate); //convert date into string
+			//String serviceDate = sdf.format(randomDate); //convert date into string
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
