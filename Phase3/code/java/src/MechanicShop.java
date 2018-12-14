@@ -888,13 +888,11 @@ public class MechanicShop{
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//
 		System.out.println("Please enter an integer k: "); 
-		String input = in.readLine();
-		String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT " + input;
-		
-		try
-		{
-	         int rowCount = esql.executeQueryAndPrintResult(SQL);
-	         System.out.println ("Cars with most services: " + rowCount);
+		try{
+			String input = in.readLine();
+			String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT " + input;
+	    	int rowCount = esql.executeQueryAndPrintResult(SQL);
+	        System.out.println ("Cars with most services: " + rowCount);
     	}
     	catch(Exception e)
     	{
