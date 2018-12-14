@@ -516,7 +516,7 @@ public class MechanicShop{
 			System.err.println (e.getMessage ());
 		}
 		
-		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
+		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = '" + lastName "'"; 
 		try{
 		List<List<String>> results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		}catch(Exception e) {
