@@ -506,6 +506,7 @@ public class MechanicShop{
 		String car = "";
 		String customerID = ""; 
 		String firstName = ""; 
+		List<List<String>> results;
 		boolean valid = false;
 		boolean fnameFound = false; 
 		System.out.println("Please enter your last name: "); //user enters last name 
@@ -518,7 +519,7 @@ public class MechanicShop{
 		
 		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = '" + lastName + "'"; 
 		try{
-		List<List<String>> results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		}catch(Exception e) {
 			System.err.println (e.getMessage ());
 		}
