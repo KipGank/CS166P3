@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
-import java.text.SimpleDateFormat; 
+import java.text.DateFormat; 
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -651,6 +651,7 @@ public class MechanicShop{
 		// representation of a date with the defined format.
 		String serviceDate = df.format(today); //convert date into string
 		String complaint = ""; 
+		String bill = '0'; 
 		String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		esql.executeUpdate(SQL); //create new service request 
 	}
