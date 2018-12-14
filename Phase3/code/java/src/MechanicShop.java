@@ -433,7 +433,9 @@ public class MechanicShop{
 			}
 		} while(yearExp >= 0 && yearExp < 100);
 		
-		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values('" + firstName + "\', \'" + lastName + "\', \'" + yearExp + "\')";
+		String yExp = Integer.toString(yearExp); 
+		
+		String SQL = "INSERT INTO Mechanic(fname, lname, experience) Values('" + firstName + "\', \'" + lastName + "\', \'" + yExp + "\')";
 	}
 	
 	
@@ -489,7 +491,9 @@ public class MechanicShop{
 				System.err.println (e.getMessage ());
 			} 
 		} while (year < 1970);
-		String SQL = "INSERT INTO Car(make,model,year) Values('" + make + "\', \'" + model + "\', \'" + year + "')";
+		
+		String yr = Integer.toString(year); 
+		String SQL = "INSERT INTO Car(make,model,year) Values('" + make + "\', \'" + model + "\', \'" + yr + "')";
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
@@ -511,7 +515,7 @@ public class MechanicShop{
 		
 		list<list<String>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		if(results.size != 0) {
-			system.out.println("Select from available customers: ");
+			System.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
 				System.out.println(results.get(i).get(0)); 
 				System.out.printf("%n");
