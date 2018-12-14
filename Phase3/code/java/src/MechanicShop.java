@@ -388,6 +388,7 @@ public class MechanicShop{
 				address = in.readline();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
+			}
 		if(address.length() > 256)
 		{
 			do {
@@ -403,7 +404,6 @@ public class MechanicShop{
 		}
 		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 	}
-	
 	public static void AddMechanic(MechanicShop esql){//2
 		Scanner reader = new scanner(system.in);
 		int id = 0;
