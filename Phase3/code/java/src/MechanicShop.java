@@ -396,21 +396,9 @@ public class MechanicShop{
 		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 	}
 	public static void AddMechanic(MechanicShop esql){//2
-		Scanner reader = new scanner(System.in);
-		int id = 0;
 		String firstName = "";
 		String lastName = "";
-		int yearExp = 0;
-		
-	
-		System.out.print("Please enter your mechanic id: ");
-		try
-		{
-			id = in.readLine();
-		} catch(Exception e) {
-			System.err.println (e.getMessage ());
-		}
-		
+		String yearExp = "";
 		do
 		{
 			System.out.print("Please enter your first name: ");
