@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Date;
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -398,7 +399,7 @@ public class MechanicShop{
 	public static void AddMechanic(MechanicShop esql){//2
 		String firstName = "";
 		String lastName = "";
-		String yearExp = "";
+		int yearExp = "";
 		do
 		{
 			System.out.print("Please enter your first name: ");
@@ -427,7 +428,7 @@ public class MechanicShop{
 			System.out.print("Please enter your year of experience: ");
 			try
 			{
-				 yearExp = in.readLine();
+				 yearExp = Integer.parseInt(in.readLine());
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
@@ -486,7 +487,7 @@ public class MechanicShop{
 			System.out.print("Please enter the year: ");
 			try
 			{
-				year = in.readLine();
+				year = Integer.parseInt(in.readLine());
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			} 
@@ -513,7 +514,7 @@ public class MechanicShop{
 		
 		SQL = "SELECT C.fname FROM Customer C WHERE C.lname = " + lastName; 
 		
-		list<list<String>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
+		List<List<String>> results = executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
 		if(results.size != 0) {
 			System.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
@@ -562,7 +563,7 @@ public class MechanicShop{
 			}
 			if(!valid) { //if the VIN entered is not found, prompt user to enter VIN again 
 				System.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
-				System.out.prinf("%n");
+				System.out.printf("%n");
 				AddCar(esql);
 			}
 			Date serviceDate = new Date(); //create a date for creating a new service request 
