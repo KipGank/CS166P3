@@ -543,11 +543,12 @@ public class MechanicShop{
 				} catch(Exception e) {
 					System.err.println (e.getMessage ());
 				}
-		for(int i = 0; i < results.size(); ++i) { //check if first name exists
-			if(results.get(i).get(0) == firstName) {
-				fnameFound = true; 	
-				break;
-			} 
+			for(int i = 0; i < results.size(); ++i) { //check if first name exists
+				if(results.get(i).get(0) == firstName) {
+					fnameFound = true; 	
+					break;
+				} 
+			}
 		}
 		if(!fnameFound) //if the user needs to create a service request as a new customer
 		{
@@ -585,7 +586,7 @@ public class MechanicShop{
 			serviceDate = string(serviceDate); //convert date into string
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
-			String fakerid = "0" //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
+			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
 			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
 			executeUpdate(SQL); //create new service request 
 		}
@@ -654,12 +655,12 @@ public class MechanicShop{
 		String complaint = ""; //complaint will be empty
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
-		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + '\', \'' + complaint + '\', \'' + bill + ')'; 
+		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		executeUpdate(SQL); //create new service request 
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-		string SQL = 'SELECT date,comment,bill FROM Closed_Request WHERE bill < 100';
+		string SQL = "SELECT C.date,C.comment,C.bill FROM Closed_Request C WHERE bill < 100";
 		
 		try
 		{
@@ -675,7 +676,7 @@ public class MechanicShop{
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 	
-		string SQL = 'SELECT fname, lname FROM Customer,( SELECT customer_id,COUNT(customer_id) as car_num FROM Owns GROUP BY customer_id HAVING COUNT(customer_id) > 20 ) AS O WHERE O.customer_id = id';
+		string SQL = 'SELECT C.fname, C.lname FROM Customer C,( SELECT customer_id,COUNT(customer_id) as car_num FROM Owns GROUP BY customer_id HAVING COUNT(customer_id) > 20 ) AS O WHERE O.customer_id = id';
 		
 		try
 		{
@@ -690,7 +691,7 @@ public class MechanicShop{
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
 		
-		string SQL = 'SELECT DISTINCT make,model, year FROM Car AS C, Service_Request AS S WHERE year < 1995 and S.car_vin = C.vin and S.odometer < 50000';
+		string SQL = 'SELECT DISTINCT C.make,C.model, year FROM Car AS C, Service_Request AS S WHERE year < 1995 and S.car_vin = C.vin and S.odometer < 50000';
 		
 		try
 		{
@@ -705,7 +706,7 @@ public class MechanicShop{
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
 		//
-		string SQL = 'SELECT make, model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10	';
+		string SQL = 'SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT 10	';
 		
 		try
 		{
