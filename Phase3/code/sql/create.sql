@@ -150,70 +150,82 @@ FROM 'closed_request.csv'
 WITH DELIMITER ',';
 
 
---Trigger for InsertServiceRequest function 
 CREATE SEQUENCE rid_gen START WITH 30001;
+CREATE SEQUENCE cid_gen START WITH 500;
+CREATE SEQUENCE mid_gen START WITH 250;
+CREATE SEQUENCE wid_gen START WITH 30001;
+--Trigger for InsertServiceRequest function 
+
+CREATE LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION createRID()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS $createRID$
 BEGIN
 NEW.rid := nextval('rid_gen');
 RETURN NEW;
 END; 
+$createRID$
 LANGUAGE plpgsql VOLATILE; 
 
 DROP TRIGGER IF exists createRID on Service_Request;
 
 CREATE TRIGGER createRID BEFORE INSERT
-ON Service_Request FOR EACH STATEMENT
+ON Service_Request FOR EACH ROW
 EXECUTE PROCEDURE createRID(); 
 
 --Trigger for AddCustomer function 
-CREATE SEQUENCE cid_gen START WITH 500;
+
+CREATE LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION createCID()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS $createCID$
 BEGIN
 NEW.id := nextval('cid_gen');
 RETURN NEW;
 END; 
+$createCID$
 LANGUAGE plpgsql VOLATILE; 
 
 DROP TRIGGER IF exists createCID on Customer;
 
 CREATE TRIGGER createCID BEFORE INSERT
-ON Customer FOR EACH STATEMENT
+ON Customer FOR EACH ROW
 EXECUTE PROCEDURE createCID(); 
 
 --Trigger for AddMechanic Function 
-CREATE SEQUENCE mid_gen START WITH 250;
+
+CREATE LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION createMID()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS $createMID$
 BEGIN
 NEW.id := nextval('mid_gen');
 RETURN NEW;
 END; 
+$createMID$
 LANGUAGE plpgsql VOLATILE; 
 
 DROP TRIGGER IF exists createMID on Mechanic;
 
 CREATE TRIGGER createMID BEFORE INSERT
-ON Mechanic FOR EACH STATEMENT
+ON Mechanic FOR EACH ROW
 EXECUTE PROCEDURE createMID(); 
 
 --Trigger for WID
-CREATE SEQUENCE wid_gen START WITH 30001;
+
+CREATE LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION createWID()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS $createWID$
 BEGIN
 NEW.wid := nextval('wid_gen');
 RETURN NEW;
 END; 
+$createWID$
 LANGUAGE plpgsql VOLATILE; 
 
 DROP TRIGGER IF exists createWID on Closed_Request;
 
 CREATE TRIGGER createWID BEFORE INSERT
-ON Closed_Request FOR EACH STATEMENT
+ON Closed_Request FOR EACH ROW
 EXECUTE PROCEDURE createWID(); 
