@@ -502,6 +502,7 @@ public class MechanicShop{
 		String SQL = ""; 
 		String car = "";
 		String customerID = ""; 
+		String firstName = ""; 
 		boolean valid = false;
 		boolean fnameFound = false; 
 		System.out.println("Please enter your last name: "); //user enters last name 
@@ -521,7 +522,6 @@ public class MechanicShop{
 				System.out.println(results.get(i).get(0)); 
 				System.out.printf("%n");
 			}
-			String firstName = ""; 
 			try{
 				firstName = in.readLine();
 				} catch(Exception e) {
@@ -546,7 +546,7 @@ public class MechanicShop{
 			System.out.println("Select from available cars to service: "); 
 			System.out.printf("%n");
 			for(int i = 0; i < results.size(); ++i) {
-				System.println(results.get(i).get(0));
+				System.out.println(results.get(i).get(0));
 				customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
 				break;
 			} 
@@ -566,13 +566,17 @@ public class MechanicShop{
 				System.out.printf("%n");
 				AddCar(esql);
 			}
-			Date serviceDate = new Date(); //create a date for creating a new service request 
-			serviceDate = String(serviceDate); //convert date into string
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+			// Get the date today using Calendar object.
+			Date today = Calendar.getInstance().getTime();        
+			// Using DateFormat format method we can create a string 
+			// representation of a date with the defined format.
+			String serviceDate = df.format(today); //convert date into string
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
 			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
-			executeUpdate(SQL); //create new service request 
+			esql.executeUpdate(SQL); //create new service request 
 		}
 	}
 	
@@ -640,7 +644,7 @@ public class MechanicShop{
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
 		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
-		executeUpdate(SQL); //create new service request 
+		esql.executeUpdate(SQL); //create new service request 
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
