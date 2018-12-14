@@ -507,7 +507,7 @@ public class MechanicShop{
 		String customerID = ""; 
 		String firstName = ""; 
 		String serviceDate = ""; 
-		List<List<String>> results;
+		List<List<String>> results(0);
 		boolean valid = false;
 		boolean fnameFound = false; 
 		System.out.println("Please enter your last name: "); //user enters last name 
@@ -595,7 +595,11 @@ public class MechanicShop{
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
 			SQL = "INSERT INTO Service_Request(customer_id, car_vin, date, odometer, complain) Values('" + customerID + "\', \'" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
+			try {
 			esql.executeUpdate(SQL); //create new service request 
+			} catch(Exception e) {
+				System.err.println(e.getMessage ());
+			}
 		}
 	}
 	
