@@ -576,7 +576,7 @@ public class MechanicShop{
 			Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
 			// Using DateFormat format method we can create a string 
 			// representation of a date with the defined format.
-			String serviceDate = df.format(randomDate); //convert date into string
+			String serviceDate = sdf.format(randomDate); //convert date into string
 			String complaint = ""; //complaint will be empty
 			String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
 			String fakerid = "0"; //this rid will be overwritten by the trigger implemented at the bottom of create.sql 
@@ -655,7 +655,7 @@ public class MechanicShop{
 		Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
 		// Using DateFormat format method we can create a string 
 		// representation of a date with the defined format.
-		String serviceDate = df.format(randomDate); //convert date into string
+		String serviceDate = sdf.format(randomDate); //convert date into string
 		String complaint = ""; 
 		String bill = "0"; 
 		String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
