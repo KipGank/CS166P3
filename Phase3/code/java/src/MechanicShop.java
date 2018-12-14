@@ -314,7 +314,7 @@ public class MechanicShop{
 		String address = ""; 
 		int id = 0;
 		
-		system.out.print("Please enter your customer id: ");
+		System.out.print("Please enter your customer id: ");
 		try
 		{
 			id = in.readline();
@@ -322,7 +322,7 @@ public class MechanicShop{
 			System.err.println (e.getMessage ());
 		}
 		
-		system.out.print("Please enter your first name: ");
+		System.out.print("Please enter your first name: ");
 		try
 		{
 			firstName = in.readline();
@@ -331,7 +331,7 @@ public class MechanicShop{
 		}
 		if(firstName.length() > 32) {
 			do {
-				system.out.print("Please enter your first name: ");
+				System.out.print("Please enter your first name: ");
 				try
 				{
 					firstName = in.readline();
@@ -342,7 +342,7 @@ public class MechanicShop{
 			} while(valid);
 			valid = true;
 		}
-		system.out.print("Please enter your last name: ");
+		System.out.print("Please enter your last name: ");
 		try
 				{
 					lastName = in.readline();
@@ -351,7 +351,7 @@ public class MechanicShop{
 				}
 		if(lastName.length() > 32) {
 			do {
-				system.out.print("Please enter your last name: ");
+				System.out.print("Please enter your last name: ");
 				try
 				{
 					lastName = in.readline();
@@ -362,7 +362,7 @@ public class MechanicShop{
 			} while(valid);
 			valid = true;
 		}
-		system.out.print("Please enter your phone number: ");
+		System.out.print("Please enter your phone number: ");
 		try
 			{
 				phone = in.readline();
@@ -371,7 +371,7 @@ public class MechanicShop{
 			}
 		if(phone.length() > 13) {
 			do {
-				system.out.print("Please enter your phone number: ");
+				System.out.print("Please enter your phone number: ");
 				try
 				{
 					phone = in.readline();
@@ -382,7 +382,7 @@ public class MechanicShop{
 			} while(valid);
 			valid = true; 
 		}
-		system.out.print("Please enter your address: ");
+		System.out.print("Please enter your address: ");
 		try
 			{
 				address = in.readline();
@@ -392,7 +392,7 @@ public class MechanicShop{
 		if(address.length() > 256)
 		{
 			do {
-				system.out.print("Please enter your address: ");
+				System.out.print("Please enter your address: ");
 				try
 				{
 					address = in.readline();
@@ -405,14 +405,14 @@ public class MechanicShop{
 		String SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
 	}
 	public static void AddMechanic(MechanicShop esql){//2
-		Scanner reader = new scanner(system.in);
+		Scanner reader = new scanner(System.in);
 		int id = 0;
 		String firstName = "";
 		String lastName = "";
 		int yearExp = 0;
 		
 	
-		system.out.print("Please enter your mechanic id: ");
+		System.out.print("Please enter your mechanic id: ");
 		try
 		{
 			id = in.readline();
@@ -422,7 +422,7 @@ public class MechanicShop{
 		
 		do
 		{
-			system.out.print("Please enter your first name: ");
+			System.out.print("Please enter your first name: ");
 			try
 			{
 				firstName = in.readline();
@@ -433,7 +433,7 @@ public class MechanicShop{
 	
 		do
 		{
-			system.out.print("Please enter your last name: ");
+			System.out.print("Please enter your last name: ");
 			try
 			{
 				lastName = in.readline();
@@ -445,7 +445,7 @@ public class MechanicShop{
 		
 		do
 		{
-			system.out.print("Please enter your year of experience: ");
+			System.out.print("Please enter your year of experience: ");
 			try
 			{
 				 yearExp = in.readline();
@@ -468,7 +468,7 @@ public class MechanicShop{
 		
 		do
 		{
-			system.out.print("Please enter the VIN: ");
+			System.out.print("Please enter the VIN: ");
 			try
 			{
 				VIN = in.readline();
@@ -479,18 +479,18 @@ public class MechanicShop{
 		
 		do
 		{
-			system.out.print("Please enter the make: ");
+			System.out.print("Please enter the make: ");
 			try
 			{
 				make = in.readline();
 			} catch(Exception e) {
 				System.err.println (e.getMessage ());
 			}
-		}while(make.length > 32);
+		}while(make.length() > 32);
 		
 		do
 		{
-			system.out.print("Please enter the model: ");
+			System.out.print("Please enter the model: ");
 			try
 			{
 				model = in.readline();
@@ -502,7 +502,7 @@ public class MechanicShop{
 		
 		do
 		{
-			system.out.print("Please enter the year: ");
+			System.out.print("Please enter the year: ");
 			try
 			{
 				year = in.readline();
@@ -520,7 +520,7 @@ public class MechanicShop{
 		String customerID = ""; 
 		boolean valid = false;
 		boolean fnameFound = false; 
-		system.out.println("Please enter your last name: "); //user enters last name 
+		System.out.println("Please enter your last name: "); //user enters last name 
 		try
 		{
 			lastName = in.readline();
@@ -534,8 +534,8 @@ public class MechanicShop{
 		if(results.size != 0) {
 			system.out.println("Select from available customers: ");
 			for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
-				system.out.println(results.get(i).get(0)); 
-				system.out.printf("%n");
+				System.out.println(results.get(i).get(0)); 
+				System.out.printf("%n");
 			}
 			String firstName = ""; 
 			try{
@@ -552,17 +552,17 @@ public class MechanicShop{
 		}
 		if(!fnameFound) //if the user needs to create a service request as a new customer
 		{
-			system.out.println("Name not found. Please provide information for a new customer: ");
-			system.out.printf("%n");
+			System.out.println("Name not found. Please provide information for a new customer: ");
+			System.out.printf("%n");
 			AddCustomer(esql);
 		}
 		else { //find all VINs associated with the first and last name provided 
 			SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = " + firstname + " AND C2.lname = " + lastname; 
 			results = executeQueryAndReturnResult(SQL);
-			system.out.println("Select from available cars to service: "); 
-			system.out.printf("%n");
+			System.out.println("Select from available cars to service: "); 
+			System.out.printf("%n");
 			for(int i = 0; i < results.size(); ++i) {
-				system.println(results.get(i).get(0));
+				System.println(results.get(i).get(0));
 				customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
 				break;
 			} 
@@ -578,8 +578,8 @@ public class MechanicShop{
 				}
 			}
 			if(!valid) { //if the VIN entered is not found, prompt user to enter VIN again 
-				system.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
-				system.out.prinf("%n");
+				System.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
+				System.out.prinf("%n");
 				AddCar(esql);
 			}
 			Date serviceDate = new Date(); //create a date for creating a new service request 
@@ -655,7 +655,7 @@ public class MechanicShop{
 		String complaint = ""; //complaint will be empty
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
-		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
+		SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill  "')"; 
 		executeUpdate(SQL); //create new service request 
 	}
 	
