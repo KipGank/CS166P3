@@ -28,6 +28,7 @@ import java.util.Date;
 import java.text.DateFormat; 
 import java.text.SimpleDateFormat;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Objects;
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -557,7 +558,7 @@ public class MechanicShop{
 			System.out.println("First name entered: " + firstName);
 			System.out.println("First element at first list: " + results.get(0).get(0));
 			for(int i = 0; i < results.size(); ++i) { //check if first name exists
-				if(results.get(i).get(0).equals(firstName)) {
+				if(Objects.equals(firstName, results.get(i).get(0))) {
 					System.out.println("Found Match");
 					fnameFound = true; 	
 					break;
