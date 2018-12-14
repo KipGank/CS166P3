@@ -24,7 +24,7 @@ FROM Service_Request
 GROUP BY car_vin ) AS R
 WHERE R.car_vin = C.vin
 ORDER BY R.creq DESC
-LIMIT 10;
+LIMIT 10;	
 
 -- List the first name, last name and total bill of customers in order total bill for all car brought to the mechanic.
 SELECT C.fname , C.lname, Total
