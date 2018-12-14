@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
-import java.text.simpleSDF; 
+import java.text.SimpleDateFormat; 
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -583,11 +583,11 @@ public class MechanicShop{
 	
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
 		
-		String SQLRID = "SELECT COUNT(R.rid) FROM Service_Request R WHERE R.rid = ";
-		String SQLMID = "SELECT COUNT(M.id) FROM Mechanic M WHERE M.id = ";
-		int WID = 0;
-		int RID = 0;
-		int MID = 0;
+		// String SQLRID = "SELECT COUNT(R.rid) FROM Service_Request R WHERE R.rid = ";
+		// String SQLMID = "SELECT COUNT(M.id) FROM Mechanic M WHERE M.id = ";
+		// int WID = 0;
+		// int RID = 0;
+		// int MID = 0;
 		/*
 		boolean ridBool = 0;
 		boolean midBool = 0;
@@ -644,6 +644,13 @@ public class MechanicShop{
 		String complaint = ""; //complaint will be empty
 		*/
 	//	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		// Get the date today using Calendar object.
+		Date today = Calendar.getInstance().getTime();        
+		// Using DateFormat format method we can create a string 
+		// representation of a date with the defined format.
+		String serviceDate = df.format(today); //convert date into string
+		String complaint = ""; 
 		String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
 		esql.executeUpdate(SQL); //create new service request 
 	}
