@@ -539,256 +539,7 @@ public class MechanicShop{
 				System.err.println (e.getMessage ());
 		}
 	}
-	
-	// public static void InsertServiceRequest(MechanicShop esql){//4
-	// 	String lastName = "";
-	// 	String SQL = ""; 
-	// 	String car = "";
-	// 	String customerID = ""; 
-	// 	String firstName = ""; 
-	// 	String serviceDate = "";
-	// 	String fakeid = "0"; 
-	// 	String phone = ""; 
-	// 	String address = "";
-	// 	String make = "";
-	// 	int year = 0;
-	// 	String model = "";
-	// 	List<List<String>> results = new ArrayList<List<String>>();
-	// 	List<String> keepResults = new ArrayList<String>(); 
-	// 	boolean valid = false;
-	// 	boolean fnameFound = false; 
-	// 	System.out.println("Please enter your last name: "); //user enters last name 
-	// 	try
-	// 	{
-	// 		lastName = in.readLine();
-	// 	} catch(Exception e) {
-	// 		System.err.println (e.getMessage ());
-	// 	}
-		
-	// 	SQL = "SELECT C.fname FROM Customer C WHERE C.lname = \'" + lastName + "\'"; 
-	// 	try{
-	// 	results = esql.executeQueryAndReturnResult(SQL); //run a query to search for first names with the last name entered from the user
-	// 	}catch(Exception e) {
-	// 		System.err.println (e.getMessage ());
-	// 	}
-	// 	if(results.size() != 0) {
-	// 		System.out.println("Select from available customers: ");
-	// 		for(int i = 0; i < results.size(); ++i) { //print out all first names associated with the last name entered
-	// 			System.out.println(results.get(i).get(0)); 
-	// 		}
-	// 		try{
-	// 			firstName = in.readLine();
-	// 			} catch(Exception e) {
-	// 				System.err.println (e.getMessage ());
-	// 			}
-	// 		System.out.println("First name entered: " + firstName);
-	// 		System.out.println("First element at first list: " + results.get(0).get(0));
-	// 		for(int i = 0; i < results.size(); ++i) { //check if first name exists
-	// 			if(firstName.trim().equals(results.get(i).get(0).trim())) {
-	// 				//System.out.println("Found Match");
-	// 				fnameFound = true; 	
-	// 				break;
-	// 			} 
-	// 		}
-	// 	}
-	// 	if(fnameFound == false) //if the user needs to create a service request as a new customer
-	// 	{
-	// 		System.out.println("Name not found. Please provide information for a new customer: ");
-	// 		valid = true; 
-	
-	// 		System.out.print("Please enter your first name: ");
-	// 		try
-	// 		{
-	// 			firstName = in.readLine();
-	// 		} catch(Exception e) {
-	// 			System.err.println (e.getMessage ());
-	// 		}
-	// 		if(firstName.length() > 32) {
-	// 			do {
-	// 				System.out.print("Please enter your first name: ");
-	// 				try
-	// 				{
-	// 					firstName = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 				valid = false; 
-	// 			} while(valid);
-	// 			valid = true;
-	// 		}
-	// 		System.out.print("Please enter your last name: ");
-	// 		try
-	// 				{
-	// 					lastName = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 		if(lastName.length() > 32) {
-	// 			do {
-	// 				System.out.print("Please enter your last name: ");
-	// 				try
-	// 				{
-	// 					lastName = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 				valid = false; 
-	// 			} while(valid);
-	// 			valid = true;
-	// 		}
-	// 		System.out.print("Please enter your phone number: ");
-	// 		try
-	// 			{
-	// 				phone = in.readLine();
-	// 			} catch(Exception e) {
-	// 				System.err.println (e.getMessage ());
-	// 			}
-	// 		if(phone.length() > 13) {
-	// 			do {
-	// 				System.out.print("Please enter your phone number: ");
-	// 				try
-	// 				{
-	// 					phone = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 				valid = false; 
-	// 			} while(valid);
-	// 			valid = true; 
-	// 		}
-	// 		System.out.print("Please enter your address: ");
-	// 		try
-	// 			{
-	// 				address = in.readLine();
-	// 			} catch(Exception e) {
-	// 				System.err.println (e.getMessage ());
-	// 			}
-	// 		if(address.length() > 256)
-	// 		{
-	// 			do {
-	// 				System.out.print("Please enter your address: ");
-	// 				try
-	// 				{
-	// 					address = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 				valid = false; 
-	// 			}while(valid);
-	// 		}
-	// 		SQL = "INSERT INTO Customer(fname, lname, phone, address) Values('" + firstName + "\', \'" + lastName + "\', \'" + phone + "\', \'" + address + "\')";
-	// 		try {
-	// 		esql.executeUpdate(SQL);
-	// 		}catch(Exception e) {
-	// 				System.err.println (e.getMessage ());
-	// 		}
-	// 	}
-	// 	else { //find all VINs associated with the first and last name provided 
-	// 		SQL = "SELECT C.vin, O.customer_id FROM Car C, Owns O, Customer C2 WHERE C.vin = O.car_vin AND C2.id = O.customer_id AND C2.fname = '" + firstName + "' AND C2.lname = '" + lastName + "'"; 
-	// 		try {
-	// 			results = esql.executeQueryAndReturnResult(SQL);
-	// 		} catch(Exception e) {
-	// 			System.err.println (e.getMessage ());
-	// 		}
-	// 		if(results.isEmpty()){ //if the VIN entered is not found, prompt user to enter VIN
-	// 			System.out.println("VIN doesn't exist in database. Please enter information for the new vehicle: ");
-	// 			System.out.printf("%n");
-	// 			do
-	// 			{
-	// 				System.out.print("Please enter the VIN: ");
-	// 				try
-	// 				{
-	// 					car = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 			}while(car.length() > 16);
-				
-	// 			do
-	// 			{
-	// 				System.out.print("Please enter the make: ");
-	// 				try
-	// 				{
-	// 					make = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-	// 			}while(make.length() > 32);
-				
-	// 			do
-	// 			{
-	// 				System.out.print("Please enter the model: ");
-	// 				try
-	// 				{
-	// 					model = in.readLine();
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				}
-				
-	// 			} while(model.length() > 32);
-				
-	// 			do
-	// 			{
-	// 				System.out.print("Please enter the year: ");
-	// 				try
-	// 				{
-	// 					year = Integer.parseInt(in.readLine());
-	// 				} catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 				} 
-	// 			} while (year < 1970);
-				
-	// 			String yr = Integer.toString(year); 
-	// 			SQL = "INSERT INTO Car(vin,make,model,year) Values('" + car + "', '" + make + "\', \'" + model + "\', \'" + yr + "')";
-	// 			try {
-	// 				esql.executeUpdate(SQL);
-	// 			}catch(Exception e) {
-	// 					System.err.println (e.getMessage ());
-	// 			}
-	// 		}
-	// 		else 
-	// 		{
-	// 			System.out.println("Select from available cars to service: "); 
-	// 			for(int i = 0; i < results.size(); ++i) {
-	// 				System.out.println(results.get(i).get(0));
-	// 				customerID = results.get(i).get(1); //obtain customerID so we can create the request later on in the function 
-	// 				break;
-	// 			} 
-	// 			try{
-	// 				car = in.readLine(); //user enters VIN for car to be serviced 
-	// 			} catch(Exception e) {
-	// 				System.err.println (e.getMessage ());
-	// 			}
-	// 			for(int i = 0; i < results.size(); ++i) { //check if VIN entered exists 
-	// 				if(car.trim().equals(results.get(i).get(0).trim())) {
-	// 					valid = true;
-	// 					break;
-	// 				}
-	// 			}
-	// 		}
-	// 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-	// 		// Get the date today using Calendar object.
-	// 		try {
-	// 		Date d1 = sdf.parse("1/1/2016 00:00");
-	// 		Date d2 = sdf.parse("12/31/2016 00:00");
-	// 		Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
-	// 		serviceDate = sdf.format(randomDate);
-	// 		} catch(Exception e) {
-	// 			System.err.println(e.getMessage ());
-	// 		}
-	// 		// Using DateFormat format method we can create a string 
-	// 		// representation of a date with the defined format.
-	// 		//String serviceDate = sdf.format(randomDate); //convert date into string
-	// 		String complaint = ""; //complaint will be empty
-	// 		String odometer = "5000"; //no way to get real odometer reading so we will just use 5000 
-	// 		SQL = "INSERT INTO Service_Request(car_vin, date, odometer, complain) Values('" + car + "\', \'" + serviceDate + "\', \'" + odometer + "\', \'" + complaint + "\')"; 
-	// 		try {
-	// 		esql.executeUpdate(SQL); //create new service request 
-	// 		} catch(Exception e) {
-	// 			System.err.println(e.getMessage ());
-	// 		}
-	// 	}
-	// }
+
 	public static void InsertServiceRequest(MechanicShop esql){//4
 		String lname,input,fname,vin,cid;
 		try{
@@ -805,7 +556,7 @@ public class MechanicShop{
        		}
 		
 		if (q2.isEmpty()) {
-			System.out.print("No customer with last name: " + lname + ". Would you like to add a new customer? (Y/N):");
+			System.out.print("No customer with the last name " + lname + ".  Add as new customer? (Y/N):");
 			input = in.readLine();
 			
 			if (input.contains("Y") || input.contains("y")) {
@@ -821,7 +572,7 @@ public class MechanicShop{
 			}
 		}
 		else {
-		System.out.print("Would you like to 1: Choose an existing customer, or 2: Add a new customer? (1/2): ");
+		System.out.print("Type 1 to choose an existing customer or 2 to add a new customer (1/2): ");
 		input = in.readLine();
 		
 		if (input.contains("1")) {
@@ -848,8 +599,8 @@ public class MechanicShop{
 		}
 		}
 		System.out.println("Your name is " + fname + " " + lname + ".");
-		System.out.println("Your customer id is " + cid + ".");
-		System.out.println("Here is a list of your cars: ");
+		System.out.println("Customer id is " + cid + ".");
+		System.out.println("List of related cars: ");
 
 		query = "SELECT c.vin, c.make, c.model, c.year FROM Customer cust, Car c, Owns o WHERE o.customer_id = cust.id AND o.car_vin = c.vin AND cust.fname = '" + fname + "' AND cust.lname = '" + lname + "'";
 		q2 = esql.executeQueryAndReturnResult(query);
@@ -859,7 +610,7 @@ public class MechanicShop{
            System.out.println((i+1)+ ". " + q2.get(i).get(0)+ " " + q2.get(i).get(1) + ", " + q2.get(i).get(2) + ", " + q2.get(i).get(3));
        }
 
-		System.out.print("Would you like to 1: Choose an existing car, or 2: Add a new car? (1/2): ");
+		System.out.print("Type 1 to choose an existing car or 2 to add a new car (1/2): ");
 		input = in.readLine();
 		if (input.contains("1")) {
 			System.out.print("\tChoose the number corresponding to the car of your choice: ");
@@ -901,7 +652,7 @@ public class MechanicShop{
                 	odometer = in.readLine();
 		}
 
-		System.out.print("\tWhat is wrong with your car?: ");
+		System.out.print("\tReason for service: ");
 		String complain = in.readLine();
 
 		query = "INSERT INTO Service_Request VALUES (" + rid + "," + cid + ",'" + vin + "','" + date + "'," + odometer + ",'" + complain + "')";
@@ -919,13 +670,13 @@ public class MechanicShop{
          srNum = in.readLine();
          while(isNumeric(srNum) == false)
          {
-           System.out.print("\tError: Not a number.Enter Service Request Number: ");
+           System.out.print("\tError: Not a number. Please Enter Service Request Number: ");
            srNum = in.readLine();
          }
          String query = "SELECT * FROM Service_Request WHERE rid =  '" + srNum + "'";
          List<List<String>> s1 = esql.executeQueryAndReturnResult(query);
          while(s1.isEmpty()){
-           System.out.print("The Service Request Number: " + srNum + " does not exist.              \nWould you like to Re-Enter the Service Request Number? (Y/N): ");
+           System.out.print("Service Request Number: " + srNum + " DNE.              \nRe-Enter the Service Request Number? (Y/N): ");
            choice = in.readLine();
            if(choice.contains("Y") || choice.contains("y")){
              System.out.print("Enter Service Request Number: ");
@@ -958,7 +709,7 @@ public class MechanicShop{
          List<List<String>> m1 = esql.executeQueryAndReturnResult(query);
          
          while(m1.isEmpty()){
-           System.out.print("The Employee ID: " + empid + " does not exist.                         \nWould you like to Re-Enter ID? (Y/N): ");
+           System.out.print("Employee ID: " + empid + " does not exist.                         \nRe-Enter ID? (Y/N): ");
            choice = in.readLine();
            if(choice.contains("Y") || choice.contains("y")){
              System.out.print("Enter Employee ID: ");
@@ -1002,82 +753,6 @@ public class MechanicShop{
          System.err.println (e.getMessage());
       }
 	}
-	// public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
-		
-	// 	// String SQLRID = "SELECT COUNT(R.rid) FROM Service_Request R WHERE R.rid = ";
-	// 	// String SQLMID = "SELECT COUNT(M.id) FROM Mechanic M WHERE M.id = ";
-	// 	// int WID = 0;
-	// 	// int RID = 0;
-	// 	// int MID = 0;
-	// 	/*
-	// 	boolean ridBool = 0;
-	// 	boolean midBool = 0;
-	
-	// 	system.out.print("Please enter the WID: ");
-	// 	try
-	// 	{
-	// 		WID = in.readLine();
-	// 	} catch(Exception e) {
-	// 		System.err.println (e.getMessage ());
-	// 	}
-		
-	// 	do
-	// 	{
-	// 		system.out.print("Please enter the RID: ");
-	// 		try
-	// 		{
-	// 			RID = in.readLine();
-	// 		} catch(Exception e) {
-	// 			System.err.println (e.getMessage ());
-	// 		}
-	// 		String input = RID;
- //       	SQLRID += input;
- //       	 int rowCount = esql.executeQuery(SQLRID);
- //       	 if (rowCount >= 1)
- //       	 {
- //       	 	ridBool = 1;
- //       	 }
-			
-	// 	} while (!ridBool);
-		
-	// 	do
-	// 	{
-	// 		system.out.print("Please enter the MID: ");
-	// 		try
-	// 		{
-	// 			MID = in.readLine();
-	// 		} catch(Exception e) {
-	// 			System.err.println (e.getMessage ());
-	// 		}
-	// 		String input = MID;
- //       	SQLMID += input;
- //       	 int rowCount = esql.executeQuery(SQLMID);
- //       	 if (rowCount >= 1)
- //       	 {
- //       	 	midBool = 1;
- //       	 }
-			
-	// 	} while (!midBool);
-		
-	// 	int bill = 1000;
-	// 	Date serviceDate = new Date(); //create a date for creating a new service request 
-	// 	serviceDate = string(serviceDate); //convert date into string
-	// 	String complaint = ""; //complaint will be empty
-	// 	*/
-	// //	SQL = 'INSERT INTO Closed_Request(' + WID + ', ' + RID + ', ' +  MID + ', ' + serviceDate + ', ' + bill + ', ' + complaint + ')'; 
-	// 	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-	// 	// Get the date today using Calendar object.
-	// 	Date d1 = sdf.parse("1/1/2016 00:00");
-	// 	Date d2 = sdf.parse("12/31/2016 00:00");
-	// 	Date randomDate = new Date(ThreadLocalRandom.current().nextLong(d1.getTime(), d2.getTime()));
-	// 	// Using DateFormat format method we can create a string 
-	// 	// representation of a date with the defined format.
-	// 	String serviceDate = sdf.format(randomDate); //convert date into string
-	// 	String complaint = ""; 
-	// 	String bill = "0"; 
-	// 	String SQL = "INSERT INTO Closed_Request(date, comment, bill) Values('" + serviceDate + "\', \'" + complaint + "\', \'" + bill + "')"; 
-	// 	esql.executeUpdate(SQL); //create new service request 
-	// }
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		String SQL = "SELECT C.date,C.comment,C.bill FROM Closed_Request C WHERE bill < 100";
@@ -1125,7 +800,7 @@ public class MechanicShop{
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//
-		System.out.println("Please enter an integer k: "); 
+		System.out.println("Enter an integer for k: "); 
 		try{
 			String input = in.readLine();
 			String SQL = "SELECT C.make, C.model, R.creq FROM Car AS C, ( SELECT car_vin, COUNT(rid) AS creq FROM Service_Request GROUP BY car_vin ) AS R WHERE R.car_vin = C.vin ORDER BY R.creq DESC LIMIT " + input;
