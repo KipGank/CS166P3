@@ -36,19 +36,6 @@ import java.util.Objects;
  *
  */
 
-public static boolean isNumeric(String str)  
-{  
-  try  
-  {  
-    double d = Double.parseDouble(str);  
-  }  
-  catch(NumberFormatException nfe)  
-  {  
-    return false;  
-  }  
-  return true;  
-}
-
 public class MechanicShop{
 	//reference to physical database connection
 	private Connection _connection = null;
@@ -71,6 +58,18 @@ public class MechanicShop{
 		}
 	}
 	
+	public static boolean isNumeric(String str)  
+	{  
+	  try  
+	  {  
+	    double d = Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
+	}
 	/**
 	 * Method to execute an update SQL statement.  Update SQL instructions
 	 * includes CREATE, INSERT, UPDATE, DELETE, and DROP.
