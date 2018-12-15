@@ -58,6 +58,20 @@ public class MechanicShop{
 		}
 	}
 	
+	final static String DATE_FORMAT = "dd-MM-yyyy";
+
+	public static boolean isDateValid(String date) 
+	{
+        try {
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            df.setLenient(false);
+            df.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+	}
+	
 	public static boolean isNumeric(String str)  
 	{  
 	  try  
