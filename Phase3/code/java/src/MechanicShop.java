@@ -572,7 +572,7 @@ public class MechanicShop{
 			}
 		}
 		else {
-		System.out.print("Type 1 to choose an existing customer or 2 to add a new customer (1/2): ");
+		System.out.print("Type 1 to choose an existing customer or 2 to add a new customer: ");
 		input = in.readLine();
 		
 		if (input.contains("1")) {
@@ -610,7 +610,7 @@ public class MechanicShop{
            System.out.println((i+1)+ ". " + q2.get(i).get(0)+ " " + q2.get(i).get(1) + ", " + q2.get(i).get(2) + ", " + q2.get(i).get(3));
        }
 
-		System.out.print("Type 1 to choose an existing car or 2 to add a new car (1/2): ");
+		System.out.print("Type 1 to choose an existing car or 2 to add a new car: ");
 		input = in.readLine();
 		if (input.contains("1")) {
 			System.out.print("\tChoose the number corresponding to the car of your choice: ");
